@@ -1,5 +1,8 @@
 # BITSIGHT Documentation
 
+## Try it now (hosted on GitHub Pages):
+**[Use BITSIGHT](https://marchisantino.github.io/BITSIGHT-steganographic-imager/BITSIGHT.html)**
+
 ## Overview
 
 BITSIGHT is a browser-based visualization tool designed to explore digital images at the bit level with precision. While images appear as cohesive visual compositions to the human eye, they are fundamentally collections of binary data organized into color channels and bit planes. BITSIGHT peels back these layers, revealing patterns, artifacts, and potentially hidden information.
