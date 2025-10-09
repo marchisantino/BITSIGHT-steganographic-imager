@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>BITSIGHT</title>
@@ -18,19 +19,40 @@
         }
 
         @keyframes text-flicker {
-            0% { text-shadow: 0 0 5px var(--crt-glow), 0 0 10px var(--crt-glow-dark); }
-            49% { text-shadow: 0 0 5px var(--crt-glow), 0 0 10px var(--crt-glow-dark); }
-            50% { text-shadow: 0 0 7px var(--crt-glow), 0 0 15px var(--crt-glow-dark), 0 0 2px white; }
-            100% { text-shadow: 0 0 5px var(--crt-glow), 0 0 10px var(--crt-glow-dark); }
+            0% {
+                text-shadow: 0 0 5px var(--crt-glow), 0 0 10px var(--crt-glow-dark);
+            }
+
+            49% {
+                text-shadow: 0 0 5px var(--crt-glow), 0 0 10px var(--crt-glow-dark);
+            }
+
+            50% {
+                text-shadow: 0 0 7px var(--crt-glow), 0 0 15px var(--crt-glow-dark), 0 0 2px white;
+            }
+
+            100% {
+                text-shadow: 0 0 5px var(--crt-glow), 0 0 10px var(--crt-glow-dark);
+            }
         }
 
         @keyframes crt-flicker {
-            0% { opacity: 0.96; }
-            50% { opacity: 1; }
-            100% { opacity: 0.96; }
+            0% {
+                opacity: 0.96;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.96;
+            }
         }
 
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -99,7 +121,9 @@
         }
 
         @keyframes blink {
-            50% { opacity: 0; }
+            50% {
+                opacity: 0;
+            }
         }
 
         .main-content {
@@ -113,7 +137,7 @@
             border: 2px solid var(--crt-border);
             padding: 1.5rem;
             flex: 0 0 420px;
-            background-color: rgba(0,0,0,0.1);
+            background-color: rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             gap: 2rem;
@@ -152,6 +176,7 @@
             width: 100%;
             display: block;
         }
+
         .file-upload-label:hover {
             background: var(--crt-glow-dark);
             border-color: var(--crt-glow);
@@ -199,8 +224,13 @@
             transition: all var(--transition-speed) ease;
         }
 
-        .bit:hover { color: var(--crt-glow); }
-        .bit:active { transform: translateY(1px); }
+        .bit:hover {
+            color: var(--crt-glow);
+        }
+
+        .bit:active {
+            transform: translateY(1px);
+        }
 
         .bit.active {
             background-color: var(--crt-glow);
@@ -209,25 +239,48 @@
         }
 
         #toggleBtn {
-            -webkit-appearance: none; appearance: none;
-            width: 50px; height: 26px;
+            -webkit-appearance: none;
+            appearance: none;
+            width: 50px;
+            height: 26px;
             border: 2px solid var(--crt-border);
             background: #222;
-            position: relative; cursor: pointer;
+            position: relative;
+            cursor: pointer;
         }
+
         #toggleBtn::before {
-            content: ''; position: absolute;
-            width: 18px; height: 18px;
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
             background: var(--crt-text);
-            top: 2px; left: 2px;
+            top: 2px;
+            left: 2px;
             transition: var(--transition-speed);
         }
-        #toggleBtn:hover::before { background: var(--crt-glow); }
-        #toggleBtn.heatmap { border-color: var(--crt-glow); }
-        #toggleBtn.heatmap::before { transform: translateX(24px); }
-        
-        .mode-status::before { content: '[HEATMAP]'; color: var(--crt-glow); }
-        .binary + .mode-status::before { content: '[BINARY]'; color: var(--crt-text); }
+
+        #toggleBtn:hover::before {
+            background: var(--crt-glow);
+        }
+
+        #toggleBtn.heatmap {
+            border-color: var(--crt-glow);
+        }
+
+        #toggleBtn.heatmap::before {
+            transform: translateX(24px);
+        }
+
+        .mode-status::before {
+            content: '[HEATMAP]';
+            color: var(--crt-glow);
+        }
+
+        .binary+.mode-status::before {
+            content: '[BINARY]';
+            color: var(--crt-text);
+        }
 
         .binary-ops {
             display: flex;
@@ -263,9 +316,15 @@
             background: var(--crt-border);
             padding: 1rem;
         }
-        p::before { content: '/* '; }
-        p::after { content: ' */'; }
-        
+
+        p::before {
+            content: '/* ';
+        }
+
+        p::after {
+            content: ' */';
+        }
+
         .canvas-container {
             flex-grow: 1;
             border: 2px solid var(--crt-border);
@@ -321,57 +380,61 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="crt-screen">
-    <div class="container">
-        <h1>BITSIGHT</h1>
+    <div class="crt-screen">
+        <div class="container">
+            <h1>BITSIGHT</h1>
 
-        <div class="main-content">
-            <div class="controls">
-                <div>
-                    <div class="prompt">LOAD_IMAGE</div>
-                    <label for="imageInput" class="file-upload-label">
-                        [SELECT FILE...]
-                    </label>
-                    <input type="file" id="imageInput" accept="image/png, image/jpeg">
-                    <img id="imagePreview" src="#" alt="Image Preview">
+            <div class="main-content">
+                <div class="controls">
+                    <div>
+                        <div class="prompt">LOAD_IMAGE</div>
+                        <label for="imageInput" class="file-upload-label">
+                            [SELECT FILE...]
+                        </label>
+                        <input type="file" id="imageInput" accept="image/*">
+                        <img id="imagePreview" src="#" alt="Image Preview">
+                    </div>
+
+                    <div>
+                        <div class="prompt">SET_BIT_PLANES</div>
+                        <div id="channelControls"
+                            style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="prompt">SET_RENDER_MODE</div>
+                        <div style="display: flex; align-items: center; gap: 1ch; margin-top: 1rem;">
+                            <button id="toggleBtn" class="toggle-btn heatmap"></button>
+                            <span class="mode-status"></span>
+                        </div>
+
+                        <div class="binary-ops" id="binaryOps" style="display: none;">
+                            <div class="binary-op active" data-op="or">OR</div>
+                            <div class="binary-op" data-op="and">AND</div>
+                            <div class="binary-op" data-op="xnor">XNOR</div>
+                            <div class="binary-op" data-op="majority">MAJORITY</div>
+                            <div class="binary-op" data-op="minority">MINORITY</div>
+                        </div>
+                    </div>
+
+                    <p>The code is available on GitHub <a
+                            href="https://github.com/marchisantino/BITSIGHT-steganographic-imager" target="_blank"
+                            style="color: inherit; text-decoration: underline;">at this link</a>.</p>
+
                 </div>
 
-                <div>
-                    <div class="prompt">SET_BIT_PLANES</div>
-                    <div id="channelControls" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
-                    </div>
+                <div class="canvas-container" id="canvasContainer">
+                    <canvas id="stegCanvas"></canvas>
+                    <div class="zoom-indicator" id="zoomIndicator">0%</div>
+                    <div class="zoom-info">DOUBLE CLICK TO RESET</div>
                 </div>
-
-                <div>
-                    <div class="prompt">SET_RENDER_MODE</div>
-                    <div style="display: flex; align-items: center; gap: 1ch; margin-top: 1rem;">
-                        <button id="toggleBtn" class="toggle-btn heatmap"></button>
-                        <span class="mode-status"></span>
-                    </div>
-                    
-                    <div class="binary-ops" id="binaryOps" style="display: none;">
-                        <div class="binary-op active" data-op="or">OR</div>
-                        <div class="binary-op" data-op="and">AND</div>
-                        <div class="binary-op" data-op="xnor">XNOR</div>
-                        <div class="binary-op" data-op="majority">MAJORITY</div>
-                        <div class="binary-op" data-op="minority">MINORITY</div>
-                    </div>
-                </div>
-                
-                <p>Look at those JPEG artifacts.. Pure art.</p>
-
-            </div>
-
-            <div class="canvas-container" id="canvasContainer">
-                <canvas id="stegCanvas"></canvas>
-                <div class="zoom-indicator" id="zoomIndicator">0%</div>
-                <div class="zoom-info">DOUBLE CLICK TO RESET</div>
             </div>
         </div>
     </div>
-</div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -391,7 +454,7 @@
             const activeBits = {};
             let isHeatmapMode = true;
             let currentBinaryOp = 'or';
-            
+
             let zoomPercent = 0;
             let panX = 0;
             let panY = 0;
@@ -426,17 +489,17 @@
 
             function calculateBaseScale() {
                 if (!originalImageData) return 1;
-                
+
                 const containerRect = canvasContainer.getBoundingClientRect();
                 const containerWidth = containerRect.width - 32;
                 const containerHeight = containerRect.height - 32;
-                
+
                 const imageWidth = stegCanvas.width;
                 const imageHeight = stegCanvas.height;
-                
+
                 const scaleX = containerWidth / imageWidth;
                 const scaleY = containerHeight / imageHeight;
-                
+
                 return Math.min(scaleX, scaleY, 1);
             }
 
@@ -444,82 +507,82 @@
                 if (zoomPercent === 0) {
                     return baseScale;
                 }
-                
-                const targetScale = 3; 
+
+                const targetScale = 3;
                 return baseScale + (zoomPercent / 300) * (targetScale - baseScale);
             }
 
             function updateCanvasPosition() {
                 if (!originalImageData) return;
-                
+
                 const scale = getActualScale();
-                
+
                 const scaledWidth = stegCanvas.width * scale;
                 const scaledHeight = stegCanvas.height * scale;
-                
+
                 const containerRect = canvasContainer.getBoundingClientRect();
                 const centerX = containerRect.width / 2;
                 const centerY = containerRect.height / 2;
-                
+
                 const left = centerX - (scaledWidth / 2) + panX;
                 const top = centerY - (scaledHeight / 2) + panY;
-                
+
                 stegCanvas.style.width = scaledWidth + 'px';
                 stegCanvas.style.height = scaledHeight + 'px';
                 stegCanvas.style.left = left + 'px';
                 stegCanvas.style.top = top + 'px';
-                
+
                 updateZoomIndicator();
             }
 
             function setupZoomAndPan() {
-               
+
                 canvasContainer.addEventListener('wheel', (e) => {
                     e.preventDefault();
-                    
+
                     const delta = -Math.sign(e.deltaY);
-                    const zoomStep = 10; 
-                    
+                    const zoomStep = 10;
+
                     const oldZoom = zoomPercent;
                     zoomPercent = Math.max(0, Math.min(300, zoomPercent + delta * zoomStep));
-                    
+
                     if (oldZoom !== zoomPercent) {
-                        
+
                         const rect = canvasContainer.getBoundingClientRect();
                         const mouseX = e.clientX - rect.left;
                         const mouseY = e.clientY - rect.top;
-                        
+
                         const oldScale = baseScale * (1 + (oldZoom / 100) * 2);
                         const newScale = baseScale * (1 + (zoomPercent / 100) * 2);
-                        
+
                         const scaledWidth = stegCanvas.width * oldScale;
                         const scaledHeight = stegCanvas.height * oldScale;
-                        
+
                         const centerX = rect.width / 2;
                         const centerY = rect.height / 2;
-                        
+
                         const oldLeft = centerX - (scaledWidth / 2) + panX;
                         const oldTop = centerY - (scaledHeight / 2) + panY;
-                      
+
                         const imageX = (mouseX - oldLeft) / oldScale;
                         const imageY = (mouseY - oldTop) / oldScale;
-                        
+
                         const newScaledWidth = stegCanvas.width * newScale;
                         const newScaledHeight = stegCanvas.height * newScale;
-                        
+
                         const newLeft = centerX - (newScaledWidth / 2) + panX;
                         const newTop = centerY - (newScaledHeight / 2) + panY;
-                        
+
                         const newMouseX = newLeft + imageX * newScale;
                         const newMouseY = newTop + imageY * newScale;
-                        
+
                         panX += mouseX - newMouseX;
                         panY += mouseY - newMouseY;
-                        
+
                         updateCanvasPosition();
                     }
                 });
-                
+
                 canvasContainer.addEventListener('mousedown', (e) => {
                     if (e.button === 0) {
                         isDragging = true;
@@ -530,38 +593,38 @@
                         canvasContainer.style.cursor = 'grabbing';
                     }
                 });
-                
+
                 document.addEventListener('mousemove', (e) => {
                     if (isDragging) {
                         const deltaX = e.clientX - dragStartX;
                         const deltaY = e.clientY - dragStartY;
-                        
+
                         panX = dragStartPanX + deltaX;
                         panY = dragStartPanY + deltaY;
-                        
+
                         updateCanvasPosition();
                     }
                 });
-                
+
                 document.addEventListener('mouseup', () => {
                     if (isDragging) {
                         isDragging = false;
                         canvasContainer.style.cursor = 'grab';
                     }
                 });
-                
+
                 canvasContainer.addEventListener('dblclick', () => {
                     resetZoom();
                 });
             }
-            
+
             function resetZoom() {
                 zoomPercent = 0;
                 panX = 0;
                 panY = 0;
                 updateCanvasPosition();
             }
-            
+
             function updateZoomIndicator() {
                 zoomIndicator.textContent = `${zoomPercent}%`;
             }
@@ -656,7 +719,7 @@
                         selectedBits.push({ channelIndex, bitPos });
                     });
                 }
-                
+
                 if (selectedBits.length === 0) {
                     stegCtx.clearRect(0, 0, stegCanvas.width, stegCanvas.height);
                     updateCanvasPosition();
@@ -667,9 +730,9 @@
                     let maxValue = 0;
                     selectedBits.forEach(bit => maxValue += Math.pow(2, bit.bitPos));
                     if (maxValue === 0) {
-                         stegCtx.clearRect(0, 0, stegCanvas.width, stegCanvas.height);
-                         updateCanvasPosition();
-                         return;
+                        stegCtx.clearRect(0, 0, stegCanvas.width, stegCanvas.height);
+                        updateCanvasPosition();
+                        return;
                     }
                     for (let i = 0; i < imageData.length / 4; i++) {
                         const pixelIndex = i * 4;
@@ -744,4 +807,5 @@
         });
     </script>
 </body>
+
 </html>
